@@ -30,8 +30,6 @@ struct Args {
 enum Brainfuck {
     UnmatchedLeft,
     UnmatchedRight,
-    PointerOver,
-    PointerUnder,
 }
 
 #[derive(Debug)]
@@ -103,6 +101,9 @@ fn main() -> Result<(), Err> {
         println!();
         let mut buf = String::new();
         io::stdin().read_line(&mut buf).map_err(Err::IO)?;
+        if buf.len() == 0 {
+          break;
+        }
         for c in buf.chars() {
             code.push(c);
         }
